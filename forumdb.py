@@ -38,6 +38,6 @@ def AddPost(content):
     t = time.strftime('%c', time.localtime())
     DB = psycopg2.connect("dbname=forum")
     cursor = DB.cursor()
-    cursor.execute("INSERT into posts (content,time) VALUES ('%s', '%s')" % (content,t))
+    cursor.execute("INSERT into posts (content,time) VALUES (%s, %s)", (content,t)) #content as a text
     DB.commit()
     DB.close()
